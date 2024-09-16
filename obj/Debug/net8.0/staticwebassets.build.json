@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "YPx8YeiUUtqBSGxZsiqizYTkWLkC0RwisYr33RrCm5Q=",
+  "Source": "AirPollution.Api",
+  "BasePath": "_content/AirPollution.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
