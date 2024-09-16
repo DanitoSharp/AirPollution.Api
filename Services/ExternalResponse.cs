@@ -1,11 +1,13 @@
 using System;
+using System.Text.Json;
+using AirPollution.Api.Models;
 
 namespace AirPollution.Api.Services
 {
 
     public interface IExternalResponse
     {
-        Task<string> GetAirPollutionData();
+        Task<AirData?> GetAirPollutionData();
     }
 
     public class ExternalResponse : IExternalResponse
@@ -18,16 +20,23 @@ namespace AirPollution.Api.Services
             Client = _Client;
         }
 
-        public async Task<string> GetAirPollutionData()
+        public async Task<AirData?> GetAirPollutionData()
         {
+            var lat = 6.096801;
+            var lon = 8.595430;
+            var key = "74c8c25a92f9766ce646f557d3b2a596";
+            
+            var link = $"http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={key}";
 
-            var link = "http://api.openweathermap.org/data/2.5/air_pollution?lat=6.096801&lon=8.595430&appid=74c8c25a92f9766ce646f557d3b2a596";
+            var message = await Client.GetAsync(link);
 
-            HttpResponseMessage client = await Client.GetAsync(link);
-
-            if (client.IsSuccessStatusCode)
+            if (message.IsSuccessStatusCode)
             {
-                return await client.Content.ReadAsStringAsync();
+                string result = await message.Content.ReadAsStringAsync();
+
+                AirData? sent = JsonSerializer.Deserialize<AirData>(result);
+
+                return sent;
             }
             else
             {
