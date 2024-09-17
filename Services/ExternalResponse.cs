@@ -8,6 +8,7 @@ namespace AirPollution.Api.Services
     public interface IExternalResponse
     {
         Task<AirData?> GetAirPollutionData();
+        Task<AirData?> GetAirPollutionForcast();
     }
 
     public class ExternalResponse : IExternalResponse
@@ -22,11 +23,11 @@ namespace AirPollution.Api.Services
 
         public async Task<AirData?> GetAirPollutionData()
         {
-            var lat = 6.096801;
-            var lon = 8.595430;
-            var key = "74c8c25a92f9766ce646f557d3b2a596";
+            // var lat = 6.096801;
+            // var lon = 8.595430;
+            // var key = "74c8c25a92f9766ce646f557d3b2a596";
             
-            var link = $"http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={key}";
+            var link = $"http://api.openweathermap.org/data/2.5/air_pollution?lat=6.096801&lon=8.595430&appid=74c8c25a92f9766ce646f557d3b2a596";
 
             var message = await Client.GetAsync(link);
 
@@ -34,15 +35,35 @@ namespace AirPollution.Api.Services
             {
                 string result = await message.Content.ReadAsStringAsync();
 
-                AirData? sent = JsonSerializer.Deserialize<AirData>(result);
+                AirData? inject = JsonSerializer.Deserialize<AirData>(result);
 
-                return sent;
+                return inject;
             }
             else
             {
                 throw new HttpRequestException("Error trying to fatch data from external Api!");
             }
 
+        }
+
+        public async Task<AirData?> GetAirPollutionForcast()
+        {
+            
+            var link =$"http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=6.096801&lon=8.595430&appid=74c8c25a92f9766ce646f557d3b2a596";
+            var message = await Client.GetAsync(link);
+
+            if(message.IsSuccessStatusCode)
+            {
+                var result = await message.Content.ReadAsStringAsync();
+
+                AirData? inject = JsonSerializer.Deserialize<AirData>(result);
+                
+                return inject;
+                
+            }
+            else{
+                throw new HttpRequestException("Error trying to fatch data from external Api!");
+            }
         }
 
     }

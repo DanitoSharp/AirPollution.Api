@@ -16,8 +16,8 @@ namespace AirPollution.Api.Controllers
         }
 
 
-        [HttpGet]
-        public async Task<IActionResult> GetData()
+        [HttpGet("/CurrentData")]
+        public async Task<IActionResult> GetCurrentData()
         {
             try{
                 var data = await response.GetAirPollutionData();
@@ -25,6 +25,21 @@ namespace AirPollution.Api.Controllers
             }catch(Exception ex)
             {
                 return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("/ForcastData")]
+        public async Task<IActionResult> GetForcastData()
+        {
+            try{
+
+                var data = await response.GetAirPollutionForcast();
+                return Ok(data);
+
+            }catch(Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+
             }
         }
 
