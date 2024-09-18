@@ -7,9 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// builder.Services.AddHttpClient();
+
 builder.Services.AddHttpClient<IExternalResponse, ExternalResponse>();
-// builder.Services.AddTransient();
 
 builder.Services.AddControllers();
 

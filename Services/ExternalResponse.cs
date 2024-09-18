@@ -8,8 +8,8 @@ namespace AirPollution.Api.Services
 
     public interface IExternalResponse
     {
-        Task<AirData?> GetAirPollutionData();
-        Task<AirData?> GetAirPollutionForcast();
+        Task<AirData?> GetAirPollutionData(double lat, double lon);
+        Task<AirData?> GetAirPollutionForcast(double lat, double lon);
     }
 
     public class ExternalResponse : IExternalResponse
@@ -22,12 +22,13 @@ namespace AirPollution.Api.Services
             Client = _Client;
         }
 
-        public async Task<AirData?> GetAirPollutionData()
+        public async Task<AirData?> GetAirPollutionData(double lat, double lon)
         {
-            // var lon = 8.595430;
+            
             // var key = "74c8c25a92f9766ce646f557d3b2a596";
             
-            var link = $"http://api.openweathermap.org/data/2.5/air_pollution?lat=6.096801&lon=8.595430&appid=74c8c25a92f9766ce646f557d3b2a596";
+            //var link = $"http://api.openweathermap.org/data/2.5/air_pollution?lat=6.096801&lon=8.595430&appid=74c8c25a92f9766ce646f557d3b2a596";
+            var link = $"http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid=74c8c25a92f9766ce646f557d3b2a596";
 
             var message = await Client.GetAsync(link);
 
@@ -46,10 +47,11 @@ namespace AirPollution.Api.Services
 
         }
 
-        public async Task<AirData?> GetAirPollutionForcast()
+        public async Task<AirData?> GetAirPollutionForcast(double lat, double lon)
         {
             
-            var link ="http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=6.096801&lon=8.595430&appid=74c8c25a92f9766ce646f557d3b2a596";
+            //var link ="http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=6.096801&lon=8.595430&appid=74c8c25a92f9766ce646f557d3b2a596";
+            var link = $"http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat={lat}&lon={lon}&appid=74c8c25a92f9766ce646f557d3b2a596";
             
             var message = await Client.GetAsync(link);
 

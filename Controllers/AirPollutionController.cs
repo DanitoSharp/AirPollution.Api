@@ -17,10 +17,14 @@ namespace AirPollution.Api.Controllers
 
 
         [HttpGet("/CurrentData")]
-        public async Task<IActionResult> GetCurrentData()
+        public async Task<IActionResult> GetCurrentData(double lat, double lon)
         {
             try{
-                var data = await response.GetAirPollutionData();
+                var data = await response.GetAirPollutionData(lat, lon);
+                if(data is null)
+                {
+                    return NotFound();
+                }
                 return Ok(data);
             }catch(Exception ex)
             {
@@ -28,19 +32,28 @@ namespace AirPollution.Api.Controllers
             }
         }
         [HttpGet("/ForcastData")]
-        public async Task<IActionResult> GetForcastData()
+        public async Task<IActionResult> GetForcastData([FromQuery]double lat, [FromQuery] double lon)
         {
             try{
 
-                var data = await response.GetAirPollutionForcast();
+                var data = await response.GetAirPollutionForcast(lat, lon);
+                if(data is null)
+                {
+                    return NotFound();
+                }
                 return Ok(data);
-
             }catch(Exception ex)
             {
 
                 return BadRequest(ex.Message);
                 
             }
+        }
+
+        [HttpGet("creator")]
+        public IActionResult Creator()
+        {
+            return Ok("Daniel Ekeleme");
         }
 
         
