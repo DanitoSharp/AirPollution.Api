@@ -39,7 +39,7 @@ namespace AirPollution.Api.Controllers
             {
 
                 return BadRequest(ex.Message);
-
+                
             }
         }
 

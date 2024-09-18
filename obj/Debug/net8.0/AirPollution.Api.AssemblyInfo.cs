@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AirPollution.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a98c387b6fe634b82b98027b53aa8ef3843dc789")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fc1533cac779dd81b0d4b9eb74658dcbb4a7838b")]
 [assembly: System.Reflection.AssemblyProductAttribute("AirPollution.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AirPollution.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -32,3 +32,4 @@ C:\Users\Daniel Ekeleme\Documents\Dotnet\WebApi\AirPollution.Api\obj\Debug\net8.
 C:\Users\Daniel Ekeleme\Documents\Dotnet\WebApi\AirPollution.Api\obj\Debug\net8.0\AirPollution.Api.pdb
 C:\Users\Daniel Ekeleme\Documents\Dotnet\WebApi\AirPollution.Api\obj\Debug\net8.0\AirPollution.Api.genruntimeconfig.cache
 C:\Users\Daniel Ekeleme\Documents\Dotnet\WebApi\AirPollution.Api\obj\Debug\net8.0\ref\AirPollution.Api.dll
+C:\Users\Daniel Ekeleme\Documents\Dotnet\WebApi\AirPollution.Api\bin\Debug\net8.0\Newtonsoft.Json.dll
